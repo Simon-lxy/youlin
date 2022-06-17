@@ -1,0 +1,125 @@
+{
+  "groups": [
+    {
+      "name": "tanhua.aip",
+      "type": "com.tanhua.autoconfig.properties.AipFaceProperties",
+      "sourceType": "com.tanhua.autoconfig.properties.AipFaceProperties"
+    },
+    {
+      "name": "tanhua.green",
+      "type": "com.tanhua.autoconfig.properties.GreenProperties",
+      "sourceType": "com.tanhua.autoconfig.properties.GreenProperties"
+    },
+    {
+      "name": "tanhua.huanxin",
+      "type": "com.tanhua.autoconfig.properties.HuanXinProperties",
+      "sourceType": "com.tanhua.autoconfig.properties.HuanXinProperties"
+    },
+    {
+      "name": "tanhua.oss",
+      "type": "com.tanhua.autoconfig.properties.OssProperties",
+      "sourceType": "com.tanhua.autoconfig.properties.OssProperties"
+    },
+    {
+      "name": "tanhua.sms",
+      "type": "com.tanhua.autoconfig.properties.SmsProperties",
+      "sourceType": "com.tanhua.autoconfig.properties.SmsProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "tanhua.aip.api-key",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.autoconfig.properties.AipFaceProperties"
+    },
+    {
+      "name": "tanhua.aip.app-id",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.autoconfig.properties.AipFaceProperties"
+    },
+    {
+      "name": "tanhua.aip.secret-key",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.autoconfig.properties.AipFaceProperties"
+    },
+    {
+      "name": "tanhua.green.access-key-i-d",
+      "type": "java.lang.String",
+      "description": "账号",
+      "sourceType": "com.tanhua.autoconfig.properties.GreenProperties"
+    },
+    {
+      "name": "tanhua.green.access-key-secret",
+      "type": "java.lang.String",
+      "description": "密钥",
+      "sourceType": "com.tanhua.autoconfig.properties.GreenProperties"
+    },
+    {
+      "name": "tanhua.green.scenes",
+      "type": "java.lang.String",
+      "description": "场景",
+      "sourceType": "com.tanhua.autoconfig.properties.GreenProperties"
+    },
+    {
+      "name": "tanhua.huanxin.appkey",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.autoconfig.properties.HuanXinProperties"
+    },
+    {
+      "name": "tanhua.huanxin.client-id",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.autoconfig.properties.HuanXinProperties"
+    },
+    {
+      "name": "tanhua.huanxin.client-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.autoconfig.properties.HuanXinProperties"
+    },
+    {
+      "name": "tanhua.oss.access-key",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.autoconfig.properties.OssProperties"
+    },
+    {
+      "name": "tanhua.oss.bucket-name",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.autoconfig.properties.OssProperties"
+    },
+    {
+      "name": "tanhua.oss.endpoint",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.autoconfig.properties.OssProperties"
+    },
+    {
+      "name": "tanhua.oss.secret",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.autoconfig.properties.OssProperties"
+    },
+    {
+      "name": "tanhua.oss.url",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.autoconfig.properties.OssProperties"
+    },
+    {
+      "name": "tanhua.sms.access-key",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.autoconfig.properties.SmsProperties"
+    },
+    {
+      "name": "tanhua.sms.secret",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.autoconfig.properties.SmsProperties"
+    },
+    {
+      "name": "tanhua.sms.sign-name",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.autoconfig.properties.SmsProperties"
+    },
+    {
+      "name": "tanhua.sms.template-code",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.autoconfig.properties.SmsProperties"
+    }
+  ],
+  "hints": []
+}

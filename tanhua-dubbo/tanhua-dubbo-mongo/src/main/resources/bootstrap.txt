@@ -1,0 +1,13 @@
+server.port = 18082
+# Nacos Server 的地址
+spring.cloud.nacos.config.server-addr=192.168.136.160:8848
+# 这里的对应 Nacos Server 中的 Data ID 的前缀
+spring.application.name=tanhua-dubbo-mongo
+# 这里的对应 Nacos Server  中的指定的配置规则格式和 Data ID 的后缀
+spring.cloud.nacos.config.file-extension=yaml
+# 关闭动态刷新，默认是开启
+#spring.cloud.nacos.config.refresh.enabled=false
+
+# 服务发现
+spring.cloud.nacos.discovery.server-addr=192.168.136.160:8848
+
