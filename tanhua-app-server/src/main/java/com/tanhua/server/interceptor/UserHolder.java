@@ -29,4 +29,9 @@ public class UserHolder {
     public static String getMobile() {
         return tl.get().getMobile();
     }
+
+    //清空
+    public static void remove() {
+        tl.remove();
+    }
 }

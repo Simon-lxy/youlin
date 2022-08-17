@@ -31,7 +31,7 @@ public class UserInfoService {
         userInfoApi.save(userInfo);
     }
 
-    //更新用户头像
+    //上传用户头像
     public void updateHead(MultipartFile headPhoto, Long id) throws IOException {
         //1、将图片上传到阿里云oss
         String imageUrl = ossTemplate.upload(headPhoto.getOriginalFilename(), headPhoto.getInputStream());
