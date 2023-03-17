@@ -67,7 +67,7 @@ public class MovementService {
         movement.setMedias(medias);
         //5、调用API完成发布动态
         String movementId = movementApi.publish(movement);
-        mqMessageService.sendAudiService(movementId);
+        mqMessageService.sendAudiMessage(movementId);
     }
 
     //查询个人动态
@@ -107,7 +107,7 @@ public class MovementService {
         if(CollUtil.isEmpty(list)) {
             return new PageResult();
         }
-        //4、提取动态发布人的id列表
+        //4、提取动态发布人的id列表（获取好友用户id）
         List<Long> userIds = CollUtil.getFieldValues(list, "userId", Long.class);
         //5、根据用户的id列表获取用户详情
         Map<Long, UserInfo> map = userInfoApi.findByIds(userIds, null);
@@ -156,8 +156,12 @@ public class MovementService {
         return getPageResult(page,pagesize,list);
     }
 
+
+
     //根据id查询
     public MovementsVo findById(String movementId) {
+
+        mqMessageService.sendLogMessage(UserHolder.getUserId(),"0202","movement","null");
         //1、调用api根据id查询动态详情
         Movement movement = movementApi.findById(movementId);
         //2、转化vo对象

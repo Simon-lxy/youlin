@@ -26,12 +26,19 @@ public class CommentsController {
         return ResponseEntity.ok(null);
     }
 
-    //分页查询评理列表
+    //分页查询评论列表
     @GetMapping
     public ResponseEntity findComments(@RequestParam(defaultValue = "1") Integer page,
                                     @RequestParam(defaultValue = "10") Integer pagesize,
                                        String movementId) {
         PageResult pr = commentsService.findComments(movementId,page,pagesize);
         return ResponseEntity.ok(pr);
+    }
+
+    //动态评论点赞
+    @PostMapping("/{id}/like")
+    public ResponseEntity likeComment(@PathVariable("id") String commentId) {
+        Integer likeCount = commentsService.likePlComment("commentId");
+        return ResponseEntity.ok(likeCount);
     }
 }

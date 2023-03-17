@@ -23,6 +23,7 @@ public class TokenInterceptor implements HandlerInterceptor {
     /**
      * 前置处理
      */
+    @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //1、获取头信息
         String token = request.getHeader("Authorization");

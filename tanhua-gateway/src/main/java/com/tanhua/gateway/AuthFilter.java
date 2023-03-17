@@ -38,7 +38,7 @@ public class AuthFilter implements GlobalFilter, Ordered {
         }
         String token = exchange.getRequest().getHeaders().getFirst("Authorization");
         if (!StringUtils.isEmpty(token)) {
-            token.replaceAll("Bearer ","");
+            token = token.replace("Bearer ","");
         }
         ServerHttpResponse response = exchange.getResponse();
 

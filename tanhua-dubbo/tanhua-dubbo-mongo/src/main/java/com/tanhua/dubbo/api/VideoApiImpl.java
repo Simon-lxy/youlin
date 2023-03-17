@@ -1,9 +1,11 @@
 package com.tanhua.dubbo.api;
 
 import com.tanhua.dubbo.utils.IdWorker;
+import com.tanhua.model.mongo.FocusUser;
 import com.tanhua.model.mongo.Video;
 import com.tanhua.model.vo.PageResult;
 import org.apache.dubbo.config.annotation.DubboService;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -55,4 +57,22 @@ public class VideoApiImpl implements VideoApi{
         return new PageResult(page,pagesize,count,list);
     }
 
+
+
+    //关注视频作者
+    @Override
+    public void saveFocusUser(FocusUser focusUser) {
+        //判断数据库中是否有记录，没有就保存
+        focusUser.setId(ObjectId.get());
+        focusUser.setCreated(System.currentTimeMillis());
+        mongoTemplate.save(focusUser);
+    }
+
+    //取消关注视频作者
+    @Override
+    public void deleteFollowUser(Long userId, Long followUserId) {
+        Criteria criteria = Criteria.where("userId").is(userId)
+                .and("followUserId").is(followUserId);
+        mongoTemplate.remove(new Query(criteria),FocusUser.class);
+    }
 }

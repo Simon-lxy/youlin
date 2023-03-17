@@ -3,6 +3,7 @@ package com.tanhua.server.interceptor;
 import com.tanhua.commons.utils.JwtUtils;
 import com.tanhua.model.domain.User;
 import io.jsonwebtoken.Claims;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,9 @@ public class TokenInterceptor implements HandlerInterceptor {
         
         //1、获取请求头
         String token = request.getHeader("Authorization");
+        if (!StringUtils.isEmpty(token)) {
+            token = token.replace("Bearer ","");
+        }
 
         //2、使用工具类，判断token是否有效
         boolean verifyToken = JwtUtils.verifyToken(token);

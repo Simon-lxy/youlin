@@ -1,5 +1,6 @@
 package com.tanhua.dubbo.api;
 
+import com.tanhua.model.mongo.FocusUser;
 import com.tanhua.model.mongo.Video;
 import com.tanhua.model.vo.PageResult;
 
@@ -18,4 +19,10 @@ public interface VideoApi {
 
     //根据用户id查询
     PageResult findByUserId(Integer page, Integer pagesize, Long userId);
+
+    //保存用户关注视频作者记录
+    void saveFocusUser(FocusUser focusUser);
+
+    //删除用户关注视频作者记录
+    void deleteFollowUser(Long userId, Long followUserId);
 }

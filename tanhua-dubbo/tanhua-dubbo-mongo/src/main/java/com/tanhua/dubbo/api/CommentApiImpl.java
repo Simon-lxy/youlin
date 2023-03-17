@@ -70,6 +70,27 @@ public class CommentApiImpl implements  CommentApi {
         return mongoTemplate.exists(query,Comment.class); //判断数据是否存在
     }
 
+    /**
+     * 更新mongo中评论的likeCount字段
+     * @param movementId
+     * @return
+     */
+    @Override
+    public Integer updatePlCommentLikeCount(String commentId) {
+        //查询评论信息
+        Comment comment = mongoTemplate.findById(commentId, Comment.class);
+        //构造查询条件  更新mongo表中的数据
+        Query query = new Query(Criteria.where("id").is(commentId));
+        Update update = new Update();
+        if (comment.getCommentType() == CommentType.LIKE.getType()) {
+            update.inc("likeCount",1);
+        }
+        FindAndModifyOptions options = new FindAndModifyOptions();
+        options.returnNew(true) ;//获取更新后的最新数据
+        Comment modify = mongoTemplate.findAndModify(query, update, options, Comment.class);
+        return null;
+    }
+
     //删除
     public Integer delete(Comment comment) {
         //1、删除Comment表数据

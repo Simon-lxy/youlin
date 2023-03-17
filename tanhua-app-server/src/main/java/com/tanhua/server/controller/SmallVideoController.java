@@ -45,5 +45,24 @@ public class SmallVideoController {
         PageResult result = videosService.queryVideoList(page, pagesize);
         return ResponseEntity.ok(result);
     }
+
+    /**
+     * 关注视频作者
+     */
+    @PostMapping("/{id}/userFocus")
+    public ResponseEntity userFocus(@PathVariable("id") Long followUserId) {
+        videosService.userFocus(followUserId);
+        return ResponseEntity.ok(null);
+    }
+
+
+    /**
+     * 取消关注视频作者
+     */
+    @PostMapping("/{id}/userUnFocus")
+    public ResponseEntity unUserFocus(@PathVariable("id") Long followUserId) {
+        videosService.unUserFocus(followUserId);
+        return ResponseEntity.ok(null);
+    }
     
 }

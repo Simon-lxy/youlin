@@ -14,7 +14,7 @@ public class AnalysisTask {
     @Autowired
     private AnalysisService analysisService;
 
-    @Scheduled(cron = "0/10 * * * * ?")
+    @Scheduled(cron = "0/10 * * * * ?")  //todo 秒 分 时 日 月 周 年
     public void analysis () {
         //业务逻辑
         String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());

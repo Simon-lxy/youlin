@@ -10,6 +10,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
@@ -43,6 +44,13 @@ public class SystemController {
     public ResponseEntity login(@RequestBody Map map) {
         Map retMap = adminService.login(map);
         return ResponseEntity.ok(retMap);
+    }
+
+
+    @PostMapping("/logout")
+    public ResponseEntity logout(HttpServletRequest request) {
+        adminService.logout(request);
+        return ResponseEntity.ok(null);
     }
 
     /**

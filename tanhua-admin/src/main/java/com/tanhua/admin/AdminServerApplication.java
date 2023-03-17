@@ -8,9 +8,11 @@ import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 
+/**
+ * @author 李雪松
+ */
 @SpringBootApplication(
-        exclude =
-                {MongoAutoConfiguration.class,
+        exclude = {MongoAutoConfiguration.class,
                  MongoDataAutoConfiguration.class})
 @MapperScan("com.tanhua.admin.mapper")
 @EnableScheduling

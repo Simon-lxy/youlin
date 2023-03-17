@@ -100,7 +100,7 @@ public class UserService {
             }
         }
 
-        mqMessageService.sendLogService(user.getId(),type,"user",null);
+        mqMessageService.sendLogMessage(user.getId(),type,"user",null);
 
         //6、通过JWT生成token(存入id和手机号码)
         Map tokenMap = new HashMap();

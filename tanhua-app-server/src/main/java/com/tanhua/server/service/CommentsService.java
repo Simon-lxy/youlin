@@ -52,7 +52,7 @@ public class CommentsService {
         log.info("commentCount = " + commentCount);
     }
 
-    //分页查询评理列表
+    //分页查询评论列表
     public PageResult findComments(String movementId, Integer page, Integer pagesize) {
         //1、调用API查询评论列表
         List<Comment> list = commentApi.findComments(movementId,CommentType.COMMENT,page,pagesize);
@@ -161,5 +161,22 @@ public class CommentsService {
         String hashKey = Constants.MOVEMENT_LOVE_HASHKEY + UserHolder.getUserId();
         redisTemplate.opsForHash().delete(key,hashKey);
         return count;
+    }
+
+    /**
+     * 动态评论点赞
+     * @param movementId
+     * @return
+     */
+    public Integer likePlComment(String commentId) {
+        //1、调用API查询用户是否已点赞
+        Boolean hasComment = commentApi.hasComment(commentId, UserHolder.getUserId(), CommentType.LIKE);
+        //2.如果已经点赞，抛出异常
+        if (hasComment) {
+            throw new BusinessException(ErrorResult.likeError());
+        }
+        //3、调用API将mongo中评论的likecount进行更新
+        Integer likeCount = commentApi.updatePlCommentLikeCount(commentId);
+        return likeCount;
     }
 }

@@ -83,9 +83,9 @@ public class MovementApiImpl implements MovementApi {
                 .skip((page -1) * pagesize).limit(pagesize).with(Sort.by(Sort.Order.desc("created")));
         List<MovementTimeLine> lineList = mongoTemplate.find(query, MovementTimeLine.class);
         //2、提取动态id列表
-        List<ObjectId> list = CollUtil.getFieldValues(lineList, "movementId", ObjectId.class);
+        List<ObjectId> movementIds = CollUtil.getFieldValues(lineList, "movementId", ObjectId.class);
         //3、根据动态id查询动态详情
-        Query movementQuery = Query.query(Criteria.where("id").in(list).and("state").is(1));
+        Query movementQuery = Query.query(Criteria.where("id").in(movementIds).and("state").is(1));
         return mongoTemplate.find(movementQuery,Movement.class);
     }
 
@@ -113,14 +113,14 @@ public class MovementApiImpl implements MovementApi {
     @Override
     public PageResult findByUserId(Long uid, Integer state, Integer page, Integer pagesize) {
         Query query = new Query();
-        if(uid == null) {
+        if(uid != null) {
             query.addCriteria(Criteria.where("userId").is(uid));
         }
-        if(state == null) {
+        if(state != null) {
             query.addCriteria(Criteria.where("state").is(state));
         }
         long count = mongoTemplate.count(query, Movement.class);
-        query.limit(pagesize).skip((page-1) * pagesize).with(Sort.by(Sort.Order.desc("created")));
+        query.limit(pagesize).skip((page - 1) * pagesize).with(Sort.by(Sort.Order.desc("created")));
         List<Movement> list = mongoTemplate.find(query, Movement.class);
         return new PageResult(page,pagesize,count,list);
     }

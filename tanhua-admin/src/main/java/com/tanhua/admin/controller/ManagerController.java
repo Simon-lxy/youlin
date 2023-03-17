@@ -17,6 +17,12 @@ public class ManagerController {
     private ManagerService managerService;
 
 
+    /**
+     * 分页查询用户管理列表
+     * @param page
+     * @param pagesize
+     * @return
+     */
     @GetMapping("/users")
     public ResponseEntity users(@RequestParam(defaultValue = "1") Integer page,
                                 @RequestParam(defaultValue = "10") Integer pagesize) {
@@ -24,6 +30,11 @@ public class ManagerController {
         return ResponseEntity.ok(result);
     }
 
+    /**
+     * 根据id查询用户管理详情
+     * @param userId
+     * @return
+     */
     //根据id查询
     @GetMapping("/users/{userId}")
     public ResponseEntity findUserById(@PathVariable("userId") Long userId) {
@@ -42,7 +53,7 @@ public class ManagerController {
         return ResponseEntity.ok(result);
     }
 
-    //查询动态
+    //查询指定用户所有动态列表
     @GetMapping("/messages")
     public ResponseEntity messages(@RequestParam(defaultValue = "1") Integer page,
                                    @RequestParam(defaultValue = "10") Integer pagesize,

@@ -14,6 +14,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,7 +46,7 @@ public class AdminService {
         //4、判断admin对象是否存在，密码是否一致
         password = SecureUtil.md5(password);
         if(admin == null || !password.equals(admin.getPassword())) {
-            throw  new BusinessException("用户名或者密码错误");
+            throw new BusinessException("用户名或者密码错误");
         }
         //5、生成token
         Map tokenMap = new HashMap();
@@ -58,10 +59,19 @@ public class AdminService {
         return retMap;
     }
 
-    //获取当前用户的用户资料
+    /**
+     *     获取当前用户的用户资料
+     */
     public AdminVo profile() {
         Long id = AdminHolder.getId();
         Admin admin = adminMapper.selectById(id);
         return AdminVo.init(admin);
+    }
+
+    /**
+     * 退出登录
+     */
+    public void logout(HttpServletRequest request) {
+        request.removeAttribute("Authorization");
     }
 }

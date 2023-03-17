@@ -12,6 +12,7 @@ import com.tanhua.commons.utils.Constants;
 import com.tanhua.dubbo.api.UserInfoApi;
 import com.tanhua.dubbo.api.VideoApi;
 import com.tanhua.model.domain.UserInfo;
+import com.tanhua.model.mongo.FocusUser;
 import com.tanhua.model.mongo.Video;
 import com.tanhua.model.vo.ErrorResult;
 import com.tanhua.model.vo.PageResult;
@@ -131,5 +132,36 @@ public class SmallVideosService {
         }
 
         return new PageResult(page,pagesize,0l,vos);
+    }
+
+
+    /**
+     * 关注视频作者
+     * @param followUserId   关注作者id
+     */
+    public void userFocus(Long followUserId) {
+        //创建FollowUser对象，并且设置属性
+        FocusUser focusUser = new FocusUser();
+        focusUser.setFollowUserId(followUserId);
+        focusUser.setUserId(UserHolder.getUserId());
+        //调用APi保存
+        videoApi.saveFocusUser(focusUser);
+        //将关注记录存入redis
+        String key = Constants.FOCUS_USER + UserHolder.getUserId();
+        String hashKey = String.valueOf(followUserId);
+        redisTemplate.opsForHash().put(key,hashKey,"1");
+    }
+
+    /**
+     * 取消关注视频作者
+     * @param followUserId
+     */
+    public void unUserFocus(Long followUserId) {
+        //调用API删除关注数据
+        videoApi.deleteFollowUser(UserHolder.getUserId(),followUserId);
+        //删除redis中关注记录
+        String key = Constants.FOCUS_USER + UserHolder.getUserId();
+        String hashKey = String.valueOf(followUserId);
+        redisTemplate.opsForHash().delete(key,hashKey);
     }
 }

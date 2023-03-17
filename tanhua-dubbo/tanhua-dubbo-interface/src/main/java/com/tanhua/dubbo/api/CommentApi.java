@@ -18,4 +18,7 @@ public interface CommentApi {
 
     //删除comment数据
     Integer delete(Comment comment);
+
+    //更新评论点赞数
+    Integer updatePlCommentLikeCount(String commentId);
 }

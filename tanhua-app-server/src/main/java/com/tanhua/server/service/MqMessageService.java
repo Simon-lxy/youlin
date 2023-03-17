@@ -18,11 +18,11 @@ public class MqMessageService {
     private AmqpTemplate amqpTemplate;
 
     //发送日志消息
-    public void sendLogService(Long userId,String type,String key,String busId) {
+    public void sendLogMessage(Long userId,String type,String key,String busId) {
         try {
             Map map = new HashMap();
             map.put("userId",userId.toString());
-            map.put("type",type);
+            map.put("type",type);   //todo 操作类型
             map.put("logTime",new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
             map.put("busId",busId);
             String message = JSON.toJSONString(map);
@@ -34,7 +34,7 @@ public class MqMessageService {
     }
 
     //发送动态审核消息
-    public void sendAudiService(String movementId) {
+    public void sendAudiMessage(String movementId) {
         try {
             amqpTemplate.convertAndSend("tanhua.audit.exchange",
                     "audit.movement",movementId);

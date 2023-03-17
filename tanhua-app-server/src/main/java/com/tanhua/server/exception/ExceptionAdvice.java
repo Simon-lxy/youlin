@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ExceptionAdvice {
 
+
+    //处理业务异常
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity handlerException(BusinessException be) {
         be.printStackTrace();
@@ -22,6 +24,8 @@ public class ExceptionAdvice {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResult);
     }
 
+
+    //处理不可预知的异常
     @ExceptionHandler(Exception.class)
     public ResponseEntity handlerException1(Exception be) {
         be.printStackTrace();

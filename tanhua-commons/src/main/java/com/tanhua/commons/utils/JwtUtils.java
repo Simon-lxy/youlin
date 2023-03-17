@@ -47,7 +47,8 @@ public class JwtUtils {
         if(StringUtils.isEmpty(token)) {
             return false;
         }
-        
+        //截取token前缀 Bearer
+//        token = token.substring(7);
         try {
             Claims claims = Jwts.parser()
                     .setSigningKey("itcast")
